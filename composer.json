@@ -1,0 +1,6 @@
+{
+    "require": {
+        "facebook/graph-sdk": "^5.7",
+        "ulrichsg/getopt-php": "^3.0"
+    }
+}
