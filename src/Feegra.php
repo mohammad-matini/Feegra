@@ -13,3 +13,6 @@ echo
  #      "#mm"  "#mm"   "mmm"  #     "mm"#
 
 ';
+$db = new DB();
+if(!$db) exit($db->lastErrorMsg());
+$db->close();
