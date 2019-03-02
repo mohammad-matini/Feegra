@@ -2,5 +2,8 @@
     "require": {
         "facebook/graph-sdk": "^5.7",
         "ulrichsg/getopt-php": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {"Feegra\\": "src/"}
     }
 }
