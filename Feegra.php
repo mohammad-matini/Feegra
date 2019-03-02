@@ -5,4 +5,13 @@ namespace Feegra;
 
 require_once './vendor/autoload.php';
 
-print("hello world\n\n");
+echo
+'
+ mmmmmm                 mmm
+ #       mmm    mmm   m"   "  m mm   mmm
+ #mmmmm #"  #  #"  #  #   mm  #"  " "   #
+ #      #""""  #""""  #    #  #     m"""#
+ #      "#mm"  "#mm"   "mmm"  #     "mm"#
+
+';
+
