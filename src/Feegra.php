@@ -1,11 +1,11 @@
 #!/usr/bin/env php
-<?php
-namespace Feegra;
+<?php namespace Feegra;
 
 require_once __DIR__ . '/../vendor/autoload.php';
+$configs = include(__DIR__ . '/../config.php');
 
 echo
-    '
+'
  mmmmmm                 mmm
  #       mmm    mmm   m"   "  m mm   mmm
  #mmmmm #"  #  #"  #  #   mm  #"  " "   #

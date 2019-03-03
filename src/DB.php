@@ -1,8 +1,8 @@
 <?php namespace Feegra;
 
 class DB extends \SQLite3 {
-    function __construct() {
-        $this->open('../feegra.db');
+    function __construct($configs) {
+        $this->open($configs['db_path']);
     }
 
     function init_database() {
