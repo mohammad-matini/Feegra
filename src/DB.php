@@ -102,14 +102,20 @@ class DB extends \SQLite3 {
     }
 
     function save_posts($page_id, $posts) {
+
         $statement = $this
                    ->prepare('INSERT INTO POST
                                  (POST_ID, PAGE_ID, MESSAGE, CREATED_TIME)
                           VALUES (:post_id, :page_id, :message, :created_time)');
+
         foreach($posts as $post) {
             $statement->bindValue(':post_id', $post['id']);
             $statement->bindValue(':page_id', $page_id);
-            $statement->bindValue(':message', $post['message']);
+            $statement->bindValue(':message',
+                                  array_key_exists('message', $post) ?
+                                  'message' :
+                                  array_key_exists('story', $post) ?
+                                  'story' : null);
             $statement->bindValue(':created_time', $post['created_time']);
             $statement->execute();
         }
