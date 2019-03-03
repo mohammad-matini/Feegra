@@ -20,10 +20,10 @@ class FAPI extends \Facebook\Facebook {
                 "$access_token"
             );
         } catch(Facebook\Exceptions\FacebookResponseException $e) {
-            echo 'Graph returned an error: ' . $e->getMessage();
+            echo 'Graph returned an error: ' . $e->getMessage() . PHP_EOL;
             exit;
         } catch(Facebook\Exceptions\FacebookSDKException $e) {
-            echo 'Facebook SDK returned an error: ' . $e->getMessage();
+            echo 'Facebook SDK returned an error: ' . $e->getMessage() . PHP_EOL;
             exit;
         }
         return $response;

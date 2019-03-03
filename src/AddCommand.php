@@ -35,7 +35,7 @@ class AddCommand extends Command {
                 "/$page_id", "{$this->configs['user_access_token']}"
             );
         } catch (\Throwable $e) {
-            echo 'Facebook error:' . $e->getMessage();
+            echo 'Facebook error:' . $e->getMessage() . PHP_EOL;
             exit;
         }
     }
