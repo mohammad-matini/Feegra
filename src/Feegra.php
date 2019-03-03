@@ -28,6 +28,9 @@ echo
 $db = new DB($configs);
 if(!$db) exit($db->lastErrorMsg());
 
+$fapi = new FAPI($configs);
+if(!$fapi) exit('Could not initialize Facebook SDK');
+
 $getOpt = new GetOpt();
 
 $getOpt->addOptions([
@@ -38,6 +41,8 @@ $getOpt->addOptions([
 ]);
 
 
+$getOpt->addCommand(new AddCommand($configs, $fapi, $db));
+$getOpt->addCommand(new ProcessCommand($configs, $fapi, $db));
 
 
 try {
