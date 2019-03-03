@@ -29,7 +29,9 @@ class ProcessCommand extends Command {
         $response = $this->fapi
                   ->get_page_feed($page_id, $access_token, 10, null)
                   ->getDecodedBody();
-        $next_page_cursor = $response['paging']['cursors']['after'];
+        $next_page_cursor = array_key_exists('next', $response['paging']) ?
+                          $response['paging']['cursors']['after'] :
+                          null;
         $posts = $response['data'];
         $this->db->save_posts($page_id, $posts);
         print($next_page_cursor);
