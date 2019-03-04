@@ -11,19 +11,20 @@ now).
 Usage
 -----
 
-1. First configure Feegra, configurations are stored in `config.php`. You need
-   to add your Facebook App Id, and App Secret, and a User Access Token. See
-   Limitations section bellow. You can also, optionally, change paths for the
-   database and logfile, and change the pagination size.
+First configure Feegra, configurations are stored in `config.php`. You need to
+add your Facebook App Id, and App Secret, and a User Access Token. See
+Limitations section bellow. You can also, optionally, change paths for the
+database and logfile, and change the pagination size.
 
-2. Then initialize Feegra by running:
+Then **initialize** Feegra by running:
 
 `feegra init`
 
 This prepares the Database and sets up a cronjob to `process` the queue once
 every minute.
 
-3. To add a page to the queue, run:
+To **add** a page to the queue, run:
+
 `feegra add {facebook_page_id}`
 
 Where `{facebook_page_id}` is replaced by the ID of the page you want to scrap.
@@ -31,14 +32,14 @@ The id can be easily retrieved from the page URL, it usually looks like:
 
 `https://facebook.com/page-id/possible-other-stuff`
 
-4. To process one step of the queue (one page), run
+To **process** one step of the queue (one page), run
 
 `feegra process`
 
 You don't have to do this manually. The `init` step adds a cronjob that will be
 called once a minute to do this.
 
-5. To list queued pages, run
+To **list** queued pages, run
 
 `feegra list`
 
