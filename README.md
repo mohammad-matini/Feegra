@@ -11,8 +11,8 @@ now).
 Usage
 -----
 
-First configure Feegra, configurations are stored in `config.php`. You need to
-add your Facebook App Id, and App Secret, and a User Access Token. See
+First **configure** Feegra, configurations are stored in `config.php`. You need
+to add your Facebook App Id, and App Secret, and a User Access Token. See
 Limitations section bellow. You can also, optionally, change paths for the
 database and logfile, and change the pagination size.
 
