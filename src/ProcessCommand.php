@@ -19,23 +19,41 @@ class ProcessCommand extends Command {
     }
 
     public function handle(GetOpt $getOpt) {
+        $this->db->validate_database_tables();
+        $queue_page = $this->db->get_next_queue_page();
 
-        $page_id = $this->db->get_next_queue_page()['PAGE_ID'];
+        $log = "[" . date("c") . "] :: ";
+
+        if (!$queue_page) {
+            $log = $log . "Empty Queue." . PHP_EOL;
+            file_put_contents($this->configs['log_path'], $log, FILE_APPEND);
+            exit("No unfinished pages to process.\n");
+        }
+
+        $page_id = $queue_page['PAGE_ID'];
+        $next_page_cursor = $queue_page['NEXT_PAGE_CURSOR'];
         $access_token = $this->configs['user_access_token'];
 
-        if (!$page_id)
-            exit("No unfinished pages to process.\n");
+        $log = $log . "Get Page Feed, PAGE_ID:" . $page_id . PHP_EOL;
+        file_put_contents($this->configs['log_path'], $log, FILE_APPEND);
 
         $response = $this->fapi
-                  ->get_page_feed($page_id, $access_token, 10, null)
+                  ->get_page_feed($page_id, $access_token,
+                                  $this->configs['pagination_size'],
+                                  $next_page_cursor)
                   ->getDecodedBody();
-        $next_page_cursor = array_key_exists('next', $response['paging']) ?
+        $new_next_page_cursor = array_key_exists('next', $response['paging']) ?
                           $response['paging']['cursors']['after'] :
                           null;
         $posts = $response['data'];
-        $this->db->save_posts($page_id, $posts);
-        print($next_page_cursor);
-        print_r($posts);
+        if ($posts) {
+            $this->db->save_posts($page_id, $posts);
+            $this->db->update_queue_page_status($page_id, $new_next_page_cursor);
+        } else {
+            // TODO: investigate what happens if page has no data. Should
+            // probably update page status to finished.
+            exit("Unknown Error: No Page Data?");
+        }
     }
 
     private function check_valid_facebook_page(String $page_id) {

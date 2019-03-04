@@ -2,8 +2,6 @@
 
 class FAPI extends \Facebook\Facebook {
 
-    private $fb;
-
     function __construct($configs) {
         parent::__construct([
             'default_graph_version' => 'v3.2',
@@ -13,7 +11,8 @@ class FAPI extends \Facebook\Facebook {
         ]);
     }
 
-    public function get_page_feed($page_id, $access_token, $limit, $next_page_cursor) {
+    public function get_page_feed($page_id, $access_token,
+                                  $limit, $next_page_cursor) {
         try {
             $response = $this->get(
                 "/$page_id/feed?limit=$limit&after=$next_page_cursor",
@@ -23,7 +22,8 @@ class FAPI extends \Facebook\Facebook {
             echo 'Graph returned an error: ' . $e->getMessage() . PHP_EOL;
             exit;
         } catch(Facebook\Exceptions\FacebookSDKException $e) {
-            echo 'Facebook SDK returned an error: ' . $e->getMessage() . PHP_EOL;
+            echo 'Facebook SDK returned an error: '
+                . $e->getMessage() . PHP_EOL;
             exit;
         }
         return $response;

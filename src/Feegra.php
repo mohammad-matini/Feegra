@@ -41,8 +41,10 @@ $getOpt->addOptions([
 ]);
 
 
+$getOpt->addCommand(new InitCommand($configs, $fapi, $db));
 $getOpt->addCommand(new AddCommand($configs, $fapi, $db));
 $getOpt->addCommand(new ProcessCommand($configs, $fapi, $db));
+$getOpt->addCommand(new ListCommand($configs, $fapi, $db));
 
 
 try {
