@@ -49,7 +49,7 @@ class InitCommand extends Command {
     }
 
     private function init_cron_tab() {
-        $script_executable = __DIR__ . "/feegra.php process";
+        $script_executable = __DIR__ . "/Feegra.php process";
         exec("(crontab -l 2> '/dev/null' ; echo '* * * * * $script_executable') | awk '!x[$0]++' | crontab -");
     }
 }
