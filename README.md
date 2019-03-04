@@ -4,8 +4,11 @@ Feegra scraps Facebook pages for posts, and stores them in an SQLite database.
 The pages are queued and handled sequentially until all posts from all pages are
 retrieved.
 
+WARNING: This is not-finished-yet Alpha-quality software. Don't user it! (for
+now).
 
-USAGE
+
+Usage
 -----
 
 1. First configure Feegra, configurations are stored in `config.php`. You need
@@ -14,6 +17,7 @@ USAGE
    database and logfile, and change the pagination size.
 
 2. Then initialize Feegra by running:
+
 `feegra init`
 
 This prepares the Database and sets up a cronjob to `process` the queue once
@@ -27,16 +31,23 @@ The id can be easily retrieved from the page URL, it usually looks like:
 
 `https://facebook.com/page-id/possible-other-stuff`
 
-4. To process one step of the queue (one page)
+4. To process one step of the queue (one page), run
+
+`feegra process`
+
+You don't have to do this manually. The `init` step adds a cronjob that will be
+called once a minute to do this.
 
 5. To list queued pages, run
+
 `feegra list`
 
 6. To list retrieved posts of one page, run:
+
 `feegra list {facebook_page_id}`
 
 
-LIMITATIONS
+Limitations
 -----------
 
 Currently Facebook does not allow access to the public feeds of Facebook pages.
