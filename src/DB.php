@@ -150,8 +150,12 @@ class DB extends \SQLite3 {
     function get_queue_pages() {
         $statement = $this
                    ->prepare('SELECT * FROM PAGES');
-        $result = $statement->execute()->fetchArray(SQLITE3_ASSOC);
-        return $result;
+        $result = $statement->execute();
+        $result_arr = [];
+        while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+            array_push($result_arr, $row);
+        }
+        return $result_arr;
     }
 
 
