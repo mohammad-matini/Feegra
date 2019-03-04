@@ -35,6 +35,8 @@ class ProcessCommand extends Command {
     public function __construct(Array $configs, FAPI $fapi, DB $db) {
         parent::__construct('process', [$this, 'handle']);
 
+        $this->setDescription('Gets the next batch of posts from the next page in queue.');
+
         $this->configs = $configs;
         $this->fapi = $fapi;
         $this->db = $db;

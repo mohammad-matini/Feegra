@@ -35,6 +35,8 @@ class ListCommand extends Command {
     public function __construct(Array $configs, FAPI $fapi, DB $db) {
         parent::__construct('list', [$this, 'handle']);
 
+        $this->setDescription('List queued pages, or posts of a page if given a page_id as a paramater.');
+
         $this->configs = $configs;
         $this->fapi = $fapi;
         $this->db = $db;

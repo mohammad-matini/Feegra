@@ -35,6 +35,8 @@ class InitCommand extends Command {
     public function __construct(Array $configs, FAPI $fapi, DB $db) {
         parent::__construct('init', [$this, 'handle']);
 
+        $this->setDescription('Initialize database tables, and add a `process` cronjob to the user\'s crontab.');
+
         $this->configs = $configs;
         $this->fapi = $fapi;
         $this->db = $db;

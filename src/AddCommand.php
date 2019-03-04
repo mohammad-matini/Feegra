@@ -35,6 +35,8 @@ class AddCommand extends Command {
     public function __construct(Array $configs, FAPI $fapi, DB $db) {
         parent::__construct('add', [$this, 'handle']);
 
+        $this->setDescription('Add a Facebook page to the scrapping queue. Requires the page_id as a paramanter.');
+
         $this->configs = $configs;
         $this->fapi = $fapi;
         $this->db = $db;
