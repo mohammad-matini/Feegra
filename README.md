@@ -43,7 +43,7 @@ To **list** queued pages, run
 
 `feegra list`
 
-6. To list retrieved posts of one page, run:
+To **list posts** retrieved from a page, run:
 
 `feegra list {facebook_page_id}`
 
