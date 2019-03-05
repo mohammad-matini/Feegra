@@ -48,6 +48,7 @@ class AddCommand extends Command {
     }
 
     public function handle(GetOpt $getOpt) {
+        $this->db->validate_database_tables();
         $page_id = $getOpt->getOperand('page_id');
         $this->check_valid_facebook_page($page_id);
         $this->db->add_page_to_queue($page_id);
